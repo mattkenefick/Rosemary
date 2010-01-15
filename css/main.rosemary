@@ -1,0 +1,16 @@
+<?php
+
+    /**
+    * Setup modifiers per file
+    */
+
+    if( !isset($modifiers) || !is_array($modifiers) )
+        $modifiers    = array();
+
+    // $modifiers[]  = 'Reset';
+    /** Comment out filters you don't want to use **/
+    $modifiers[]  = 'Variables';
+    $modifiers[]  = 'Browser';
+    $modifiers[]  = 'Inheritance';
+    $modifiers[]  = 'StripComments';
+    $modifiers[]  = 'Compressor';

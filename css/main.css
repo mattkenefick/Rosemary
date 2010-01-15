@@ -1,0 +1,105 @@
+    h1,h2,h3,h4,h5,h6{
+        font-weight:    normal;
+    }
+
+    /**
+    * Main Area
+    */
+    #main{
+        width:          525px;
+        font-family:    Verdana, Geneva, sans-serif;
+        line-height:    20px;
+        font-size:      13px;
+    }
+
+
+    #main h3{
+        color:          #f90;
+    }
+
+    #main h3+p,
+    #main h3+p+p,
+    #main h3{
+        margin:         0;
+    }
+
+    #main em {
+        color:          #666;
+    }
+
+    #cssTest {
+        display:        none;
+    }
+
+    pre{
+        background:     #eee;
+        padding:        10px;
+    }
+
+    /**
+     * Test area
+     *
+     * Starting with browser checking
+     */
+    ~!firefox #firefoxOnly{
+        display:        none;
+    }
+
+    ~firefox #firefoxOnly{
+        /* Temporary until multiple selectors is in place */
+        ~firefox3  font-weight: bold;
+        ~firefox35 font-weight: bold;
+    }
+
+    ~!gecko #geckoOnly{
+        display:        none;
+    }
+
+    ~!safari #safariOnly{
+        display:        none;
+    }
+
+    ~!webkit #webkitOnly{
+        display:        none;
+    }
+
+    ~webkit #webkitOnly span{
+        display:        block;
+        ~safari font-weight: bold;
+    }
+
+    /**
+     * Testing Variables
+     */
+    define blue: #0000ff;
+    #colorTesting > span {
+        color:          @blue;
+    }
+
+    define blue: #ff0000;
+    #colorTesting > span+span {
+        color:          @blue;
+    }
+
+    define matt kenefick: #ccc;
+    #colorTesting > span+span+span {
+        background:     @matt kenefick;
+    }
+
+    /**
+     * Inheritance testing
+     */
+    .myTestBlock{
+        color:      purple;
+        border:     1px solid green;
+    }
+
+    #inheritanceTest[.myTestBlock+]{
+        color:      orange;
+        /* inheritance happens here */
+    }
+
+    #inheritanceTest2[+.myTestBlock]{
+        /* inheritance happens here */
+        color:      orange;
+    }

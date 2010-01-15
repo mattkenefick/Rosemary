@@ -1,0 +1,19 @@
+#### Possible trouble shooting ####
+#
+##  Requires `mod_rewrite` to be enabled.
+#   - Check phpinfo(); function to see if yours is on
+#
+##  Requires Apache `Allow Override` to be enabled
+#   This may cause a problem if your .htaccess file isn't
+#   working.
+
+# Turn the engine on
+RewriteEngine On
+RewriteOptions MaxRedirects=1
+
+# Rewrites our CSS files
+RewriteCond %{THE_REQUEST} ^.*\.css.*$
+
+# This should be the directory path of the Rosemary controller
+# file.
+RewriteRule ^(.*)$ omgomg/$1/../Rosemary/core/Controller.php
