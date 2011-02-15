@@ -35,9 +35,8 @@
  *
  * Usage:
  *
- *     if $_GET['variable'] == "something" then
- *         /** Css here * /
- *     end if
+        header Content-Type: text/css;
+        header Cache-Control: "max-age=7200, must-revalidate";
  *
  *
  * @author     Matt Kenefick
@@ -48,28 +47,16 @@
  */
 
     $filter          = new stdClass;
-    $filter->name    = 'Conditionals';
+    $filter->name    = 'Headers';
 
     /**
     * Change Our Output
     */
-    preg_match_all("/if ([^ ]+) (==|===|!=|!==|<|>|\|\||<=|>=) ([^ ]+) then\n(.*?)\nend if/im", $output, $variableBlock, PREG_SET_ORDER);
+    preg_match_all("/header (.*?)\:(.*?)\;/im", $output, $variableBlock, PREG_SET_ORDER);
 
     foreach($variableBlock as $v){
-        list($base, $var1, $operator, $var2, $data)    =   $v;
+        list($base, $type, $value)    =   $v;
 
-        eval('$var3 = ' . "{$var1};");
-        eval('$var4 = ' . "{$var2};");
-
-        $equation   =   "if($var3 $operator $var4) {" . '$response = true; }';
-        eval($equation);
-
-        $output     =   str_replace("if $var1 $operator $var2 then\n", '', $output);
-        $output     =   str_replace("end if", '', $output);
-
-        if($response == true){
-            //echo 'GOOD!';
-        }else{
-            $output     =   str_replace($data, '', $output);
-        };
+        header($type . ': ' . $value);
+        $output     =   str_replace("header $type:$value;", '', $output);
     }
