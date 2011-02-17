@@ -31,18 +31,19 @@
   header( 'Content-Type: text/css' );
 
   $docRoot      =  $_SERVER['DOCUMENT_ROOT'];
+  $ruri         =   current(explode('?', $_SERVER['REQUEST_URI']));
   $filePath     =  substr(
                       $_SERVER['SCRIPT_NAME'],
                       0,
                       strrpos($_SERVER['SCRIPT_NAME'],'/')
                    );
   $filePath     =  $docRoot . $filePath;
-  $rosemary     =  preg_replace( '/\.css$/im', '.rosemary', $_SERVER['REQUEST_URI'] );
-  $output       =  file_get_contents( $docRoot.$_SERVER['REQUEST_URI'] );
+  $rosemary     =  preg_replace( '/\.css$/im', '.rosemary', $ruri );
+  $output       =  file_get_contents( $docRoot.$ruri );
 
-  if( file_exists( $docRoot.$rosemary ) )
+  if( file_exists( $docRoot.$rosemary ) ){
     include $docRoot.$rosemary;
-  else die( $output );
+  }else die( '/** failure **/ '. $output );
 
   foreach( $modifiers as $modifier )
     if( file_exists("$filePath/../filters/$modifier/Init.php") )
