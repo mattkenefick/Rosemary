@@ -63,6 +63,10 @@
  // set var keys
  foreach( $search as $k => $v ){
   $var          = '@'. $v;
+
+ if(substr(trim($replace[$k]), 0, 1) == '$')
+    eval('$replace[$k] = ' . "{$replace[$k]};");
+
   $offsetA      = strpos( $output, $defines[$k] );
   $tmpOutput    = str_replace( $var, $replace[$k], $output );
   $offsetB      = strpos( $tmpOutput, $defines[$k] );
