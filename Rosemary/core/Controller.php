@@ -30,6 +30,7 @@
 
   header( 'Content-Type: text/css' );
 
+    // get files
   $docRoot      =  $_SERVER['DOCUMENT_ROOT'];
   $ruri         =   current(explode('?', $_SERVER['REQUEST_URI']));
   $filePath     =  substr(
@@ -41,9 +42,17 @@
   $rosemary     =  preg_replace( '/\.css$/im', '.rosemary', $ruri );
   $output       =  file_get_contents( $docRoot.$ruri );
 
-  if( file_exists( $docRoot.$rosemary ) ){
-    include $docRoot.$rosemary;
-  }else die( '/** failure **/ '. $output );
+    $useModifiers   =   @current($_GET);
+
+    if( file_exists( $docRoot.$rosemary ) || $useModifiers ){
+        if($useModifiers){
+            include $docRoot . $useModifiers;
+        }else
+            include $docRoot.$rosemary;
+    }else{
+        die( '/** failure (no rosemary file ' . $docRoot.$rosemary . ' ) **/ '. $output );
+    };
+
 
   foreach( $modifiers as $modifier )
     if( file_exists("$filePath/../filters/$modifier/Init.php") )

@@ -52,6 +52,7 @@
  * @url        http://www.bigspaceship.com
  */
 
+
  $filter          = new stdClass;
  $filter->name    = 'Include';
 
@@ -69,7 +70,7 @@
  /**
   * Change Our Output
   */
- preg_match_all("/include (.*?)( -raw)?\;/im", $output, $variableBlock);
+ preg_match_all("/include (.*?)( -raw| -inherit)?\;/im", $output, $variableBlock);
  $defines       =  array_reverse($variableBlock[0]);
  $file          =  array_reverse($variableBlock[1]);
  $isRaw         =  array_reverse($variableBlock[2]);
@@ -77,10 +78,13 @@
 
  // set var keys
  foreach( $file as $k => $v ){
-    if( @!empty($isRaw[0]) )
-        $cssFile   =   file_get_contents( $cssFilePath . '/' . $v );
-    else
-        $cssFile   =   file_get_contents( $cssWebPath . '/' . $v );
+    if( @$isRaw[0] == ' -raw' ){
+        $cssFile    =   file_get_contents( $cssFilePath . '/' . $v );
+    }else if(@$isRaw[0] == ' -inherit'){
+        $cssFile    =   file_get_contents( $cssWebPath . '/' . $v . '?useModifiers=' . (!@empty($useModifiers)?$useModifiers : $rosemary) );
+    }else{
+        $cssFile    =   file_get_contents( $cssWebPath . '/' . $v );
+    }
 
     $output    =   str_replace( $defines[$k], $cssFile, $output );
  }

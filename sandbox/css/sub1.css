@@ -1,0 +1,5 @@
+p{
+    font-weight:    bold;
+}
+
+include sub2.css -inherit;

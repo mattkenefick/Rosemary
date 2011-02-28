@@ -8,10 +8,11 @@
         $modifiers    = array();
 
     /** Comment out filters you don't want to use **/
-    $modifiers[]  = 'Reset';
+    //$modifiers[]  = 'Reset';
     $modifiers[]  = 'Variables';
+    $modifiers[]  = 'Include';
     $modifiers[]  = 'Browser';
     $modifiers[]  = 'Inheritance';
-    $modifiers[]  = 'StripComments';
-    $modifiers[]  = 'Compressor';
+//    $modifiers[]  = 'StripComments';
+//    $modifiers[]  = 'Compressor';
 
