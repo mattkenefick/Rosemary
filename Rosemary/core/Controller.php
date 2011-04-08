@@ -28,21 +28,20 @@
  *
  **/
 
-  header( 'Content-Type: text/css' );
+    header( 'Content-Type: text/css' );
 
     // get files
-  $docRoot      =  $_SERVER['DOCUMENT_ROOT'];
-  $ruri         =   current(explode('?', $_SERVER['REQUEST_URI']));
-  $filePath     =  substr(
-                      $_SERVER['SCRIPT_NAME'],
-                      0,
-                      strrpos($_SERVER['SCRIPT_NAME'],'/')
-                   );
-  $filePath     =  $docRoot . $filePath;
-  $rosemary     =  preg_replace( '/\.css$/im', '.rosemary', $ruri );
-  $output       =  file_get_contents( $docRoot.$ruri );
-
-    $useModifiers   =   @current($_GET);
+    $docRoot      =     $_SERVER['DOCUMENT_ROOT'];
+    $ruri         =     current(explode('?', $_SERVER['REQUEST_URI']));
+    $filePath     =     substr(
+                            $_SERVER['SCRIPT_NAME'],
+                            0,
+                            strrpos($_SERVER['SCRIPT_NAME'],'/')
+                        );
+    $filePath     =     $docRoot . $filePath;
+    $rosemary     =     preg_replace( '/\.css$/im', '.rosemary', $ruri );
+    $output       =     file_get_contents( $docRoot.$ruri );
+    $useModifiers =     @current($_GET);
 
     if( file_exists( $docRoot.$rosemary ) || $useModifiers ){
         if($useModifiers){
@@ -53,9 +52,8 @@
         die( '/** failure (no rosemary file ' . $docRoot.$rosemary . ' ) **/ '. $output );
     };
 
+    foreach( $modifiers as $modifier )
+        if( file_exists("$filePath/../filters/$modifier/Init.php") )
+          include "$filePath/../filters/$modifier/Init.php";
 
-  foreach( $modifiers as $modifier )
-    if( file_exists("$filePath/../filters/$modifier/Init.php") )
-      include "$filePath/../filters/$modifier/Init.php";
-
-  die( $output );
+    die( $output );

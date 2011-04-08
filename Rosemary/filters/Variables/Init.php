@@ -40,16 +40,9 @@
  * @author     Matt Kenefick
  * @company    Big Spaceship
  * @year       2009
- * @version    0.0.1
+ * @version    0.1
  * @url        http://www.bigspaceship.com
  */
-
- $filter          = new stdClass;
- $filter->name    = 'Variables';
-
- $globalIdentifier  = 'define\sglobal\svariables';
- $search            = array();
- $replace           = array();
 
  /**
   * Change Our Output
@@ -77,4 +70,3 @@
 
  // remove vars
  $output      = str_replace( $defines, '', $output );
-
