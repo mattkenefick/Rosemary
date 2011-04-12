@@ -279,6 +279,57 @@
                 </p>
                 <br />
 
+    <!-- ===============================================================
+         CONDITIONALS
+         ======================================================== -->
+                <h3>Conditionals</h3>
+                <p class="details">
+                    <strong>name:</strong> Conditionals
+                    <br />
+                    <strong>params:</strong> PHP params
+                </p>
+                <p>
+                    <strong>description:</strong>
+                    Puts you in the PHP namespace (access to $_GET, etc) and lets
+                    you put conditional if/endif statements in your CSS. Useful
+                    for appending query strings to a CSS document.
+                </p>
+                <br />
+
+    <!-- ===============================================================
+         FILESAVE
+         ======================================================== -->
+                <h3>FileSave</h3>
+                <p class="details">
+                    <strong>name:</strong> FileSave
+                    <br />
+                    <strong>params:</strong> none
+                </p>
+                <p>
+                    <strong>description:</strong>
+                    Writes a file to disk along side your xx.rosemary file. Output
+                    name is xx.rosemary.css. Can be inserted at anypoint of Rosemary
+                    processing. Great for production level compiled files.
+                </p>
+                <br />
+
+    <!-- ===============================================================
+         HEADERS
+         ======================================================== -->
+                <h3>Headers</h3>
+                <p class="details">
+                    <strong>name:</strong> Headers
+                    <br />
+                    <strong>params:</strong> header type, header value
+                </p>
+                <p>
+                    <strong>description:</strong>
+                    Allows setting of PHP headers such as Content-Type. Syntax
+                    is: "header Content-Type: text/css;" Recommended to be
+                    the first filter in a sequence.
+                </p>
+                <br />
+
             </div>
 
         </div>
