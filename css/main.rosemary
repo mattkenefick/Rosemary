@@ -14,3 +14,4 @@
     $modifiers[]  = 'Inheritance';
     $modifiers[]  = 'StripComments';
     $modifiers[]  = 'Compressor';
+    $modifiers[]  = 'FileSave';

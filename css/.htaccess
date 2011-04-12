@@ -16,4 +16,4 @@ RewriteCond %{THE_REQUEST} ^.*\.css.*$
 
 # This should be the directory path of the Rosemary controller
 # file.
-RewriteRule ^(.*)$ omgomg/$1/../Rosemary/core/Controller.php
+RewriteRule ^(.*)$ ../Rosemary/core/Controller.php
